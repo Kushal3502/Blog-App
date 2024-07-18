@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import { Container, PostForm } from "../components";
 
 function AddPost() {
   return (
-    <div>AddPost</div>
-  )
+    <div className="w-full h-full pt-1">
+      <Container>
+        <PostForm />
+      </Container>
+    </div>
+  );
 }
 
-export default AddPost
+export default AddPost;

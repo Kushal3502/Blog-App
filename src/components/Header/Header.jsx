@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Container, Logo } from "../index";
+import { Container, Logo, LogoutBtn } from "../index";
 import { Link } from "react-router-dom";
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const authStatus = useSelector((state) => state.auth.status);
 
   const navItems = [
@@ -23,8 +24,8 @@ function Header() {
       active: !authStatus,
     },
     {
-      name: "All Posts",
-      slug: "/all-posts",
+      name: "My Posts",
+      slug: "/my-posts",
       active: authStatus,
     },
     {
@@ -37,33 +38,51 @@ function Header() {
   return (
     <header className="bg-gray-900 shadow-md">
       <Container>
-        <nav className="flex items-center justify-between p-4">
+        <nav className="flex items-center justify-between p-4 relative">
+          {/* Logo */}
           <div className="text-gray-300 hover:text-white text-3xl font-semibold">
             <Link to={"/"}>
               <Logo />
             </Link>
           </div>
-          <ul className="flex space-x-4">
+
+          {/* Menu Button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-300 hover:text-white focus:outline-none"
+            >
+              {isMenuOpen ? "Close" : "Menu"}
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <ul
+            className={`lg:flex lg:space-x-4 absolute lg:static bg-gray-900 lg:bg-transparent top-full left-0 w-full lg:w-auto lg:mt-0 mt-4 lg:p-0 p-4 lg:flex-row flex-col z-10 rounded-lg ${
+              isMenuOpen ? "block" : "hidden"
+            }`}
+          >
             {navItems.map(
               (item) =>
                 item.active && (
-                  <Link to={item.slug} key={item.name}>
-                    <li>
-                      <button className="text-gray-300 hover:text-white px-3 py-2 rounded-md transition-colors duration-300">
+                  <li key={item.name} className="mb-2 lg:mb-0">
+                    <Link to={item.slug}>
+                      <button
+                        className="text-gray-300 hover:text-white px-3 py-2 rounded-md transition-colors duration-300 w-full text-left"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
                         {item.name}
                       </button>
-                    </li>
-                  </Link>
+                    </Link>
+                  </li>
                 )
             )}
             {authStatus && (
-              <Link to={"/login"}>
-                <li>
-                  <button className="text-gray-300 hover:text-white px-3 py-2 rounded-md transition-colors duration-300">
-                    Logout
-                  </button>
-                </li>
-              </Link>
+              <li>
+                <Link to={"/login"}>
+                  <LogoutBtn />
+                </Link>
+              </li>
             )}
           </ul>
         </nav>
