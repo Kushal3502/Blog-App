@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Footer, Header } from "./components";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -8,12 +8,14 @@ import { login, logout } from "./store/authSlice";
 function App() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     authService
       .getCurrentUser()
       .then((userData) => {
         userData ? dispatch(login(userData)) : dispatch(logout());
+        navigate("/login");
         // console.log(userData);
       })
       .finally(() => setLoading(false));
