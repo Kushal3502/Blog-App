@@ -46,6 +46,7 @@ export default function PostForm({ post }) {
         const dbPost = await appwriteService.createPost({
           ...data,
           userId: userData.$id,
+          name: userData.name,
         });
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
@@ -87,8 +88,7 @@ export default function PostForm({ post }) {
         <Input
           label="Slug :"
           placeholder="Slug"
-          
-        disabled="true"
+          disabled="true"
           className="mb-4 text-sm p-2"
           {...register("slug", { required: true })}
           onInput={(e) => {

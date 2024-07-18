@@ -12,7 +12,7 @@ function Post() {
   const user = useSelector((state) => state.auth.userData);
   const isAuthor = user && post ? user.$id === post.userId : false;
 
-  console.log(user, post);
+  console.log(post);
 
   useEffect(() => {
     if (slug) {
@@ -62,7 +62,9 @@ function Post() {
             <h1 className="text-4xl font-bold text-gray-900 mb-6">
               {post.title}
             </h1>
-
+            <p className=" text-gray-700 mb-4">
+              by <span className="font-semibold text-xl text-gray-800">{post.name}</span>
+            </p>
             <div className="text-gray-800 leading-relaxed space-y-4">
               {parse(post.content)}
             </div>

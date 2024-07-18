@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
-import { Container, PostCard } from "../components";
+import { Container, PostCard, Button } from "../components";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -36,9 +37,14 @@ function Home() {
                 )
             )
           ) : (
-            <p className="text-center text-gray-500 w-full col-span-full">
-              No posts available
-            </p>
+            <div className="col-span-full flex flex-col items-center">
+              <p className="text-center text-gray-500 mb-4">
+                No posts available
+              </p>
+              <Link to={"/add-post"}>
+                <Button>Create post</Button>
+              </Link>
+            </div>
           )}
         </div>
       </Container>

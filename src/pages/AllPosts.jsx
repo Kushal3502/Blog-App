@@ -21,7 +21,7 @@ function AllPosts() {
 
   console.log(posts);
   return loader ? (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="w-full h-full flex items-center justify-center bg-gray-100">
       <p className="text-lg font-medium text-gray-700">Loading...</p>
     </div>
   ) : (

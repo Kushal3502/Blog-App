@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@heroicons/react": "^2.1.5",
     "@reduxjs/toolkit": "^2.2.6",
     "@tinymce/tinymce-react": "^5.1.1",
     "appwrite": "^15.0.0",
