@@ -20,18 +20,21 @@ function Login() {
     setError("");
     try {
       const session = await authService.login(data);
+      console.log(session);
       if (session) {
         const userData = await authService.getCurrentUser();
         if (userData) {
           dispatch(login(userData));
           navigate("/");
         }
-      }
+      } else {
+        setError("Invalid credentials")
+      } 
     } catch (error) {
       setError(error.message);
     }
   };
-
+console.log(error);
   return (
     <div className=" flex items-center justify-center bg-gray-50 rounded-xl border-gray-700 border-2">
       <div className="max-w-lg w-full bg-white p-10 rounded-lg shadow-lg">
@@ -44,7 +47,7 @@ function Login() {
             Sign up
           </Link>
         </p>
-        {error && <p className="text-red-500 text-center mb-6">{error}</p>}
+        {error && <p className="text-red-500 font-semibold text-center mb-6">{error}</p>}
         <form onSubmit={handleSubmit(handleLogin)} className="space-y-6">
           <div>
             <Input

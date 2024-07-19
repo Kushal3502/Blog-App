@@ -78,7 +78,7 @@ function Header() {
                 )
             )}
             {authStatus && (
-              <li>
+              <li onClick={() => setIsMenuOpen(false)}>
                 <Link to={"/login"}>
                   <LogoutBtn />
                 </Link>

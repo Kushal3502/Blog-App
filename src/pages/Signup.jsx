@@ -3,7 +3,7 @@ import { Signup as SignupComponent } from "../components";
 
 function Signup() {
   return (
-    <div className="w-1/4">
+    <div>
       <SignupComponent />
     </div>
   );

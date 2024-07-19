@@ -31,7 +31,7 @@ function Signup() {
 
   return (
     <div className="flex items-center justify-center bg-gray-50 rounded-xl border-gray-700 border-2">
-      <div className="bg-white py-6 px-2 rounded-lg shadow-lg">
+      <div className="max-w-lg w-full bg-white p-10 rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold mb-4 text-center text-gray-700">
           Create new account
         </h2>
@@ -49,7 +49,7 @@ function Signup() {
               type="text"
               placeholder="Enter your Full Name..."
               className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-              {...register("name", { required: true })}
+              {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
               <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
