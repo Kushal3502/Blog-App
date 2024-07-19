@@ -15,7 +15,7 @@ function App() {
       .getCurrentUser()
       .then((userData) => {
         userData ? dispatch(login(userData)) : dispatch(logout());
-        navigate("/login");
+        // navigate("/login");
         // console.log(userData);
       })
       .finally(() => setLoading(false));
